@@ -10,11 +10,16 @@ public class PlayerPickupController : MonoBehaviour
     private GameObject holdingObject;
     [SerializeField]
     private Transform holdingObjectTransform;
+    [SerializeField]
+    private Transform raycastPosition;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        if (raycastPosition == null)
+        {
+            raycastPosition = transform;
+        }
     }
 
     // Update is called once per frame
@@ -24,7 +29,7 @@ public class PlayerPickupController : MonoBehaviour
         {
             RaycastHit hit; 
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayLength))
+            if (Physics.Raycast(raycastPosition.position, raycastPosition.TransformDirection(Vector3.forward), out hit, rayLength))
             {
             
                 IPickupPoint pickupPoint = hit.collider.gameObject.GetComponent<IPickupPoint>();
@@ -48,8 +53,6 @@ public class PlayerPickupController : MonoBehaviour
                         holdingObject = newPickup;
                         holdingObject.transform.parent = holdingObjectTransform;
                         holdingObject.transform.localPosition = Vector3.zero;
-
-
                     }
                 }
             } else if (holdingObject != null)
