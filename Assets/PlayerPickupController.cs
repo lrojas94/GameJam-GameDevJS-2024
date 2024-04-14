@@ -54,6 +54,7 @@ public class PlayerPickupController : MonoBehaviour
                         holdingObject = newPickup;
                         holdingObject.transform.parent = holdingObjectTransform;
                         holdingObject.transform.localPosition = Vector3.zero;
+                        holdingObject.transform.localRotation = Quaternion.identity;
                     }
                 }
             } else if (holdingObject != null)

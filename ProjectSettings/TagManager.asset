@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Torch
   - Coal
+  - WaterBucket
   layers:
   - Default
   - TransparentFX

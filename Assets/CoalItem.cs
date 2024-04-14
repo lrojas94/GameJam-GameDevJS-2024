@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoalItem : MonoBehaviour, IHoldable, IPickupPoint
+public class CoalItem : MonoBehaviour, IHoldable
 {
     [SerializeField]
     private float throwSpeed = 1f;
@@ -17,15 +17,5 @@ public class CoalItem : MonoBehaviour, IHoldable, IPickupPoint
     {
         Vector3 forceDirection = player.transform.forward;
         rb.AddForce(forceDirection * throwSpeed, ForceMode.Force);
-    }
-
-    public GameObject OnPickUp(GameObject inHand)
-    {
-        if (inHand == null)
-        {
-            return gameObject;
-        }
-
-        return null;
     }
 }
