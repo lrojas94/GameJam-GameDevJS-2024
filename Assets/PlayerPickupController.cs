@@ -31,7 +31,8 @@ public class PlayerPickupController : MonoBehaviour
             // Does the ray intersect any objects excluding the player layer
             if (Physics.Raycast(raycastPosition.position, raycastPosition.TransformDirection(Vector3.forward), out hit, rayLength))
             {
-            
+
+                Debug.Log("hit");
                 IPickupPoint pickupPoint = hit.collider.gameObject.GetComponent<IPickupPoint>();
                 if (pickupPoint != null) {
                     // then we can give it a shot at taking it...
