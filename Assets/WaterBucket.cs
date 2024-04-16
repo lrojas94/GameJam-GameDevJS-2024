@@ -2,17 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterBucket : MonoBehaviour
+public class WaterBucket : MonoBehaviour, IHoldable
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool isFilled;
+    Animator animator;
+
+    private void Awake()
     {
-        
+        animator =  gameObject.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPutDown(GameObject player)
     {
-        
+        // Reset rotation:
+        Vector3 euler = transform.rotation.eulerAngles;
+        euler.x = 0;
+        transform.rotation = Quaternion.Euler(euler);
+    }
+
+    public void Fill()
+    {
+        if (isFilled)
+        {
+            return;
+        }
+
+        animator.SetTrigger("Fill");
+        isFilled = true;
+    }
+
+    public void Empty()
+    {
+        if (!isFilled)
+        {
+            return;
+        }
+
+        animator.SetTrigger("Empty");
+        isFilled = false;
     }
 }

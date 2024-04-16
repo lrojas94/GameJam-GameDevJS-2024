@@ -11,7 +11,10 @@ public class WaterPickup : MonoBehaviour, IPickupPoint
         {
             if (inHand.CompareTag("WaterBucket"))
             {
-                Debug.Log("I am a water bucket!");
+                WaterBucket bucket = inHand.GetComponent<WaterBucket>();
+                if (bucket != null) {
+                    bucket.Fill();
+                }
             }
             return null;
         }
