@@ -6,9 +6,19 @@ using UnityEngine.UIElements;
 public class TopDown3DPlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float playerSpeed = 10f;
+    private float topPlayerSpeed = 15f;
+    [SerializeField]
+    private float acceleration = 1f;
+    [SerializeField]
+    private float currentSpeed = 0f;
+
     [SerializeField]
     private Rigidbody rb;
+    [SerializeField]
+    private float maxTilt = 15f;
+    [SerializeField]
+    private float tiltAcceleration = 1f;
+    private float currentTilt;
 
 
     private void Awake()
@@ -29,14 +39,30 @@ public class TopDown3DPlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector2 direction = new Vector2(horizontal, vertical).normalized;
         float angle = Vector2.SignedAngle(direction, Vector2.up);
-        Vector3 velocity = (new Vector3(horizontal, 0, vertical)).normalized * playerSpeed;
         Vector3 euler = transform.localEulerAngles;
-        rb.velocity = velocity;
-        if (velocity.magnitude > 0)
+        
+        
+        if (direction.magnitude > 0)
         {
+            if (currentSpeed < topPlayerSpeed)
+            {
+                currentSpeed += acceleration * Time.deltaTime;
+            }
+
+            if (currentTilt < maxTilt)
+            {
+                currentTilt += tiltAcceleration * Time.deltaTime;
+            }
+
             euler.y = angle;
+        } else {
+            currentSpeed = 0f;
+            currentTilt = 0;
         }
-        euler.x = velocity.magnitude > 0 ? -15.0f : 0;
+
+        Vector3 velocity = (new Vector3(horizontal, 0, vertical)).normalized * Mathf.Min(topPlayerSpeed, currentSpeed);
+        rb.velocity = velocity;
+        euler.x = -currentTilt;
         transform.localEulerAngles = euler;
     }
 }

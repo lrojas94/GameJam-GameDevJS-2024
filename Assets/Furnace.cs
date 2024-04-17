@@ -7,17 +7,19 @@ public class Furnace : MonoBehaviour, IPickupPoint
     // Start is called before the first frame update
     public float currentPower = 15f;
     [SerializeField]
-    private float maxPower = 15f;
+    private float idealPower = 15f;
     private float targetPower = 15f;
 
     [SerializeField]
     private float bucketStrength = 0.5f;
+    [SerializeField]
+    private float coalStrength = 1f;
 
 
     [SerializeField]
     private ParticleSystem fireEfx;
     [SerializeField]
-    private float powerChangeDuration = 0.5f;
+    private float powerChangeDuration = 1f;
     [SerializeField]
     private float currentPowerChangeDuration = 0;
 
@@ -35,7 +37,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
         if(fireEfx != null)
         {
             var main = fireEfx.main;
-            main.startSpeed = Mathf.Min(currentPower, maxPower);    
+            main.startSpeed = currentPower;    
         }
 
         if (targetPower != currentPower)
@@ -45,6 +47,11 @@ public class Furnace : MonoBehaviour, IPickupPoint
             currentPowerChangeDuration += Time.deltaTime;
 
         }
+    }
+
+    private void AddCoal()
+    { 
+        targetPower += coalStrength;
     }
 
     public GameObject OnPickUp(GameObject inHand)
@@ -62,7 +69,25 @@ public class Furnace : MonoBehaviour, IPickupPoint
                     currentPowerChangeDuration = 0;
                 }
             }
+
+            if (inHand.CompareTag("Coal"))
+            {
+                CoalItem coal = inHand.GetComponent<CoalItem>();
+                if (coal)
+                {
+                    AddCoal();
+                    coal.OnExplode(coal.transform.position);
+                }
+            }
         }
         return null; 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Coal"))
+        {
+            AddCoal();
+        }
     }
 }

@@ -3,7 +3,17 @@ guid: 400d6ee3eefed5149bb099b0fc76000b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bucket-main.png
+    second: {fileID: 2100000, guid: 80f99f3c5911782419e9f7dfe73fe1e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bucket-water.png
+    second: {fileID: 2100000, guid: 92ccf1abc10d0f443a40ef93f6b53fb7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
