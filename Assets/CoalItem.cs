@@ -6,9 +6,7 @@ using UnityEngine.Rendering.UI;
 public class CoalItem : MonoBehaviour, IHoldable
 {
     [SerializeField]
-    private float throwSpeed = 1f;
-    [SerializeField]
-    private GameObject explosion;
+    private float throwSpeed = 1f; 
 
     private Rigidbody rb;
     private void Awake()
@@ -24,14 +22,16 @@ public class CoalItem : MonoBehaviour, IHoldable
 
     public void OnExplode(Vector3 explosionPosition)
     {
-        GameObject instance = GameObject.Instantiate(explosion);
-        instance.transform.position = explosionPosition;
+        GameObject explosion = GameObject.Instantiate(AssetManager.Instance.ExplosionPrefab);
+        explosion.transform.position = explosionPosition;
+        explosionPosition.y += 3;
+        DamagePopup.ShowDamage(100, explosionPosition);
         Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (explosion != null && collision.gameObject.CompareTag("Furnace")) {
+        if (collision.gameObject.CompareTag("Furnace")) {
             // Explode this one:
             OnExplode(collision.contacts[0].point);
         }
