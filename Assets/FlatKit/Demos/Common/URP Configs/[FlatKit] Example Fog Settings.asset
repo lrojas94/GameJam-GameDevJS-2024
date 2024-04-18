@@ -16,7 +16,7 @@ MonoBehaviour:
   distanceGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.67209816, b: 1, a: 0.09803922}
-    key1: {r: 1, g: 0.70627934, b: 0.57254905, a: 1}
+    key1: {r: 0.8058042, g: 0.57254905, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   near: 50
   far: 155.1
-  distanceFogIntensity: 0.346
+  distanceFogIntensity: 0.192
   useHeight: 1
   heightGradient:
     serializedVersion: 2
@@ -79,9 +79,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 3
   low: 1.74
   high: 19.29
-  heightFogIntensity: 0.452
+  heightFogIntensity: 0.479
   cameraRelativePosition: 0
-  distanceHeightBlend: 0.5
+  distanceHeightBlend: 0.063
   renderEvent: 550
   applyInSceneView: 1
   effectMaterial: {fileID: 3809722197779856838}
@@ -133,10 +133,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DistanceFogIntensity: 0.346
-    - _DistanceHeightBlend: 0.5
+    - _DistanceFogIntensity: 0.192
+    - _DistanceHeightBlend: 0.063
     - _Far: 155.1
-    - _HeightFogIntensity: 0.452
+    - _HeightFogIntensity: 0.479
     - _HighWorldY: 19.29
     - _LowWorldY: 1.74
     - _Near: 50
