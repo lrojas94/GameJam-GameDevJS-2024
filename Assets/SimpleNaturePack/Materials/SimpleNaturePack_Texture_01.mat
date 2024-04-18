@@ -287,7 +287,7 @@ Material:
     - _GradientCenterX: 0
     - _GradientCenterY: 0
     - _GradientEnabled: 1
-    - _GradientSize: 2
+    - _GradientSize: 3.9
     - _GradientSpace: 0
     - _HdrpVersion: 2
     - _HeightAmplitude: 0.02
@@ -411,7 +411,7 @@ Material:
     - _ColorDimCurve: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimExtra: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
     - _ColorDimSteps: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorGradient: {r: 0.14431292, g: 0.6509434, b: 0.24622451, a: 1}
+    - _ColorGradient: {r: 0, g: 0.9339623, b: 0.09346873, a: 1}
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}

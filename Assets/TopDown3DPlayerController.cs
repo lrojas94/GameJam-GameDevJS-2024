@@ -15,11 +15,8 @@ public class TopDown3DPlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
-    private float maxTilt = 15f;
-    [SerializeField]
-    private float tiltAcceleration = 1f;
-    private float currentTilt;
-
+    private float maxTilt = 15f; 
+ 
 
     private void Awake()
     {
@@ -49,20 +46,15 @@ public class TopDown3DPlayerController : MonoBehaviour
                 currentSpeed += acceleration * Time.deltaTime;
             }
 
-            if (currentTilt < maxTilt)
-            {
-                currentTilt += tiltAcceleration * Time.deltaTime;
-            }
-
-            euler.y = angle;
+            
+             euler.y = angle;
         } else {
-            currentSpeed = 0f;
-            currentTilt = 0;
+            currentSpeed = 0f; 
         }
 
         Vector3 velocity = (new Vector3(horizontal, 0, vertical)).normalized * Mathf.Min(topPlayerSpeed, currentSpeed);
         rb.velocity = velocity;
-        euler.x = -currentTilt;
+        euler.x = -maxTilt * (currentSpeed / topPlayerSpeed);
         transform.localEulerAngles = euler;
     }
 }

@@ -15,20 +15,6 @@ MonoBehaviour:
   m_Active: 0
   overrideRenderEvent: 0
   renderEvent: 0
---- !u!114 &-2401278517541482506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cca7768aaaea4b0081f14e7f9d4b5ad, type: 3}
-  m_Name: FlatKitOutline
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  settings: {fileID: 11400000, guid: ff3dfd77429d64938a26bd54c27dacd8, type: 2}
 --- !u!114 &-1344586528338988631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39,7 +25,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 770acbaed70db4ad696458511aa3f084, type: 3}
-  m_Name: FlatKitFog
+  m_Name: atKitFogog
   m_EditorClassIdentifier: 
   m_Active: 1
   settings: {fileID: 11400000, guid: f68defe9b6889484787a8d20c715e802, type: 2}
@@ -61,9 +47,7 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1344586528338988631}
-  - {fileID: 5275881155537682623}
-  - {fileID: -2401278517541482506}
-  m_RendererFeatureMap: a9319428ad1157edbf400049f5b13749f6cf292be9f1acde
+  m_RendererFeatureMap: a9319428ad1157ed
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -107,17 +91,3 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
---- !u!114 &5275881155537682623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb250ac097f481fa89c38a1e224b773, type: 3}
-  m_Name: FlatKitPixelation
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  settings: {fileID: 11400000, guid: c472facfb9eceae4ebca89f811c42f20, type: 2}
