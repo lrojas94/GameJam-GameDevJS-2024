@@ -99,13 +99,13 @@ Material:
     - _FadeDistance: 0.19
     - _FoamAmount: 0.5
     - _FoamDepth: 0.09
-    - _FoamDirection: -0.12
+    - _FoamDirection: 0.03
     - _FoamFromTexture: 1
     - _FoamMode: 2
     - _FoamNoiseAmount: 0
     - _FoamProcedural: 1
     - _FoamScale: 0.67
-    - _FoamSharpness: 0.596
+    - _FoamSharpness: 0.261
     - _FoamSpeed: 0.26
     - _FoamStretchX: 1
     - _FoamStretchY: 2.8
@@ -121,7 +121,7 @@ Material:
     - _ProceduralFoam: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionAmplitude: 0.001
+    - _RefractionAmplitude: 0.02
     - _RefractionFrequency: 9.52
     - _RefractionScale: 3
     - _RefractionSpeed: 0.49
