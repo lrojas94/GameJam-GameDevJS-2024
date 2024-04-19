@@ -129,32 +129,37 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1225167623}
+    m_TransformParent: {fileID: 1790566556}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.20000002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.040000003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
@@ -190,6 +195,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3056041028626425089, guid: 65cb67a6dcaa45a42a0f7b6090cd6324,
         type: 3}
@@ -8633,11 +8643,11 @@ Transform:
   m_LocalScale: {x: 9, y: 1.8, z: 9}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1786297544}
   - {fileID: 2045023524}
   - {fileID: 878597899}
   - {fileID: 2056211560}
   - {fileID: 1987165461}
+  - {fileID: 1790566556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1225167624
@@ -10492,6 +10502,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5768048}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1790566555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790566556}
+  m_Layer: 0
+  m_Name: Model
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1790566556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790566555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.002, y: -0.37, z: 0.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1786297544}
+  m_Father: {fileID: 1225167623}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1797704997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12197,8 +12239,8 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 2468992275576258565
-  - rid: 2468992275576258567
+  - rid: 2468992275576258568
+  - rid: 2468992275576258569
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -12206,11 +12248,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2468992275576258565
+    - rid: 2468992275576258568
       type: {class: MMF_CameraShake, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 1849614586
+        UniqueID: 480647078
         Label: Camera Shake
         ChannelMode: 0
         Channel: 0
@@ -12282,11 +12324,11 @@ MonoBehaviour:
           AmplitudeX: 0
           AmplitudeY: 0
           AmplitudeZ: 0
-    - rid: 2468992275576258567
+    - rid: 2468992275576258569
       type: {class: MMF_SquashAndStretch, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: 736832097
+        UniqueID: 1633747687
         Label: Squash and Stretch
         ChannelMode: 0
         Channel: 0
@@ -12350,12 +12392,12 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 1987165462}
         DebugActive: 0
-        SquashAndStretchTarget: {fileID: 1786297544}
+        SquashAndStretchTarget: {fileID: 1790566556}
         Mode: 0
         Axis: 3
-        AnimateScaleDuration: 0.2
+        AnimateScaleDuration: 0.15
         RemapCurveZero: 1
-        RemapCurveOne: 2
+        RemapCurveOne: 1.2
         Offset: 0
         AnimateCurve:
           serializedVersion: 2
@@ -12391,7 +12433,7 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         AllowAdditivePlays: 0
-        DetermineScaleOnPlay: 1
+        DetermineScaleOnPlay: 0
         DestinationScale: 2
 --- !u!1001 &2001372172
 PrefabInstance:
