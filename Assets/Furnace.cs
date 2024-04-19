@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class Furnace : MonoBehaviour, IPickupPoint
     private float powerChangeDuration = 1f;
     [SerializeField]
     private float currentPowerChangeDuration = 0;
+    [SerializeField]
+    MMF_Player shaker;
 
     void Awake()
     {
@@ -52,6 +55,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
     private void AddCoal()
     { 
         targetPower += coalStrength;
+        shaker.PlayFeedbacks();
     }
 
     public GameObject OnPickUp(GameObject inHand)

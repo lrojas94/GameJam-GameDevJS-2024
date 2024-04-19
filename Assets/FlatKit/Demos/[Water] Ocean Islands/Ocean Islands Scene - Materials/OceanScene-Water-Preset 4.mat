@@ -89,25 +89,25 @@ Material:
     - _CameraDistanceFadeClose: 0
     - _CameraDistanceFadeFar: 10
     - _ColorMode: 0
-    - _CrestSharpness: 0.32
-    - _CrestSize: 0.76
+    - _CrestSharpness: 0
+    - _CrestSize: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _Depth: 100
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FadeDistance: 0.19
-    - _FoamAmount: 0.5
+    - _FoamAmount: 0.435
     - _FoamDepth: 0.09
     - _FoamDirection: 0.03
     - _FoamFromTexture: 1
     - _FoamMode: 2
-    - _FoamNoiseAmount: 0
+    - _FoamNoiseAmount: 1
     - _FoamProcedural: 1
-    - _FoamScale: 0.67
-    - _FoamSharpness: 0.261
+    - _FoamScale: 0.483
+    - _FoamSharpness: 0.291
     - _FoamSpeed: 0.26
-    - _FoamStretchX: 1
+    - _FoamStretchX: 0.84
     - _FoamStretchY: 2.8
     - _FoamTexture: 1
     - _Frequency: 0.08
@@ -121,10 +121,10 @@ Material:
     - _ProceduralFoam: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionAmplitude: 0.02
+    - _RefractionAmplitude: 0.004
     - _RefractionFrequency: 9.52
     - _RefractionScale: 3
-    - _RefractionSpeed: 0.49
+    - _RefractionSpeed: 0.03
     - _RefractionStrength: 0.01
     - _ShadowStrength: 0.02
     - _Smoothness: 0.5
@@ -135,10 +135,10 @@ Material:
     - _Surface: 0
     - _UvFadeX: 0.1
     - _UvFadeY: 0.1
-    - _WaterClearness: 0.047
+    - _WaterClearness: 0.533
     - _WaterDepth: 2.88
-    - _WaveAmplitude: 0.25
-    - _WaveDirection: 0
+    - _WaveAmplitude: 0.05
+    - _WaveDirection: -0.141
     - _WaveFrequency: 50
     - _WaveMode: 2
     - _WaveNoise: 0.01
