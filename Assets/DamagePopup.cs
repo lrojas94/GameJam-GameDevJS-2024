@@ -10,13 +10,18 @@ public class DamagePopup : MonoBehaviour
     private float dissapearSpeed;
     private float moveYSpeed = 2.75f;
     private Color textColor;
+    private Color originalColor;
+    private Vector3 originalLocalScale;
 
     private const float DISSAPEAR_TIMER_MAX = 0.25f;
+   
 
 
     private void Awake()
     {
         textMesh = GetComponent<TextMeshPro>();
+        originalColor = textMesh.color;
+        originalLocalScale = transform.localScale;
     }
     public void Setup(int damage)
     {
@@ -30,13 +35,15 @@ public class DamagePopup : MonoBehaviour
         textMesh.SetText(damage.ToString());
         dissapearTimer = DISSAPEAR_TIMER_MAX;
         dissapearSpeed = 4f;
-        textColor = textMesh.color;
+        textColor = originalColor;
+        textMesh.color = originalColor;
+        transform.localScale = originalLocalScale;
     }
 
     public static DamagePopup ShowDamage(int damage, Vector3 position)
     {
         Debug.Log(damage);
-        GameObject instance = Instantiate(AssetManager.Instance.DamagePopupPrefab);
+        GameObject instance = AssetManager.Instance.DamagePopupPool.GetItemInstance();
         instance.transform.position = position;
 
         DamagePopup damagePopup = instance.GetComponent<DamagePopup>();
@@ -66,7 +73,8 @@ public class DamagePopup : MonoBehaviour
 
         if (textColor.a <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            AssetManager.Instance.DamagePopupPool.AddToPool(gameObject);
         }
     }
 

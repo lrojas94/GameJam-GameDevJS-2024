@@ -20,13 +20,20 @@ public class CoalItem : MonoBehaviour, IHoldable
         rb.AddForce(forceDirection * throwSpeed, ForceMode.Force);
     }
 
-    public void OnExplode(Vector3 explosionPosition)
+    public void OnExplode(Vector3 explosionPosition, int damage = 0)
     {
-        GameObject explosion = GameObject.Instantiate(AssetManager.Instance.ExplosionPrefab);
+        GameObject explosion = AssetManager.Instance.ExplosionPool.GetItemInstance();
         explosion.transform.position = explosionPosition;
         explosionPosition.y += 3;
-        DamagePopup.ShowDamage(100, explosionPosition);
-        Destroy(gameObject);
+
+        if (damage > 0)
+        {
+            DamagePopup.ShowDamage(damage, explosionPosition);
+        }
+        
+        gameObject.SetActive(false);
+        AssetManager.Instance.CoalPool.AddToPool(gameObject);    
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,6 +41,17 @@ public class CoalItem : MonoBehaviour, IHoldable
         if (collision.gameObject.CompareTag("Furnace")) {
             // Explode this one:
             OnExplode(collision.contacts[0].point);
+            return;
+        }
+
+        float impactForce = collision.impulse.magnitude;
+        float baseDamage = 10f;
+        float damage = baseDamage * impactForce;
+        bool canDamage = collision.gameObject.CompareTag("Enemy");
+
+        if (canDamage && impactForce > 5f && damage > 0)
+        { 
+            OnExplode( collision.contacts[0].point, (int)Mathf.Ceil(damage));
         }
     }
 }

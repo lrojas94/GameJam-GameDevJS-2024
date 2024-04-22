@@ -5,12 +5,8 @@ using UnityEngine;
 public class WaterBucket : MonoBehaviour, IHoldable
 {
     public bool isFilled;
+    [SerializeField]
     Animator animator;
-
-    private void Awake()
-    {
-        animator =  gameObject.GetComponent<Animator>();
-    }
 
     public void OnPutDown(GameObject player)
     {

@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,13 @@ public class PlayerPickupController : MonoBehaviour
     private Transform holdingObjectTransform;
     [SerializeField]
     private Transform raycastPosition;
+    [SerializeField]
+    private float raycastSize = 1f;
+
+    private TopDown3DPlayerController controller;
+
+    [SerializeField]
+    MMF_Player throwFeedback;
 
     // Start is called before the first frame update
     private void Awake()
@@ -20,6 +28,17 @@ public class PlayerPickupController : MonoBehaviour
         {
             raycastPosition = transform;
         }
+
+        if (controller  == null)
+        {
+            controller = gameObject.GetComponent<TopDown3DPlayerController>();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.DrawWireCube(raycastPosition.position + raycastPosition.forward * rayLength, Vector3.one * raycastSize);
     }
 
     // Update is called once per frame
@@ -27,12 +46,13 @@ public class PlayerPickupController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            RaycastHit hit; 
+            RaycastHit hit;
+            int mask = LayerMask.GetMask("PickUp");
+            bool hitFound = Physics.BoxCast(raycastPosition.position + raycastPosition.forward, Vector3.one / 2 * raycastSize, raycastPosition.TransformDirection(Vector3.forward), out hit, Quaternion.identity, rayLength, mask);
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(raycastPosition.position, raycastPosition.TransformDirection(Vector3.forward), out hit, rayLength))
+            if (hitFound)
             {
 
-                Debug.Log("hit");
                 IPickupPoint pickupPoint = hit.collider.gameObject.GetComponent<IPickupPoint>();
                 if (pickupPoint != null) {
                     // then we can give it a shot at taking it...
@@ -55,6 +75,7 @@ public class PlayerPickupController : MonoBehaviour
                         holdingObject.transform.parent = holdingObjectTransform;
                         holdingObject.transform.localPosition = Vector3.zero;
                         holdingObject.transform.localRotation = Quaternion.identity;
+                        controller.isHoldingObject = true;
                     }
                 }
             } else if (holdingObject != null)
@@ -81,6 +102,12 @@ public class PlayerPickupController : MonoBehaviour
                 }
 
                 holdingObject = null;
+                controller.isHoldingObject = false;
+                if (throwFeedback != null)
+                {
+                    throwFeedback.PlayFeedbacks();
+                }
+                
             }
         }
     }

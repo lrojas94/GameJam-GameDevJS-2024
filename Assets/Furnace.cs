@@ -2,19 +2,25 @@ using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Furnace : MonoBehaviour, IPickupPoint
 {
     // Start is called before the first frame update
     public float currentPower = 15f;
-    [SerializeField]
-    private float idealPower = 15f;
+    public float idealPower = 15f;
+   
     private float targetPower = 15f;
+
+    [SerializeField]
+    private float extinguishSpeed = 1f;
 
     [SerializeField]
     private float bucketStrength = 0.5f;
     [SerializeField]
     private float coalStrength = 1f;
+    [SerializeField]
+    private float enemyStrength = 2.5f;
 
 
     [SerializeField]
@@ -25,6 +31,9 @@ public class Furnace : MonoBehaviour, IPickupPoint
     private float currentPowerChangeDuration = 0;
     [SerializeField]
     MMF_Player shaker;
+
+    [SerializeField]
+    Image tempertureIndicator;
 
     void Awake()
     {
@@ -37,6 +46,8 @@ public class Furnace : MonoBehaviour, IPickupPoint
     // Update is called once per frame
     void Update()
     {
+        targetPower -= Time.deltaTime * extinguishSpeed;
+
         if(fireEfx != null)
         {
             var main = fireEfx.main;
@@ -46,15 +57,13 @@ public class Furnace : MonoBehaviour, IPickupPoint
         if (targetPower != currentPower)
         {
             // Lept these 2:
-            currentPower = Mathf.Lerp(currentPower, targetPower, currentPowerChangeDuration / powerChangeDuration);
-            currentPowerChangeDuration += Time.deltaTime;
-
-        }
+            currentPower = Mathf.Lerp(currentPower, targetPower, Time.deltaTime);
+        } 
     }
 
-    private void AddCoal()
-    { 
-        targetPower += coalStrength;
+    private void IncreaseFireStrength(float strength)
+    {  
+        targetPower += strength;
         shaker.PlayFeedbacks();
     }
 
@@ -69,8 +78,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
                 if (bucket.isFilled)
                 {
                     bucket.Empty();
-                    targetPower = currentPower - bucketStrength;
-                    currentPowerChangeDuration = 0;
+                    IncreaseFireStrength(-bucketStrength);
                 }
             }
 
@@ -79,7 +87,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
                 CoalItem coal = inHand.GetComponent<CoalItem>();
                 if (coal)
                 {
-                    AddCoal();
+                    IncreaseFireStrength(coalStrength);
                     coal.OnExplode(coal.transform.position);
                 }
             }
@@ -89,9 +97,15 @@ public class Furnace : MonoBehaviour, IPickupPoint
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Coal"))
         {
-            AddCoal();
+            IncreaseFireStrength(coalStrength);
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            IncreaseFireStrength(enemyStrength); 
         }
     }
 }

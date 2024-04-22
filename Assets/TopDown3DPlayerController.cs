@@ -15,8 +15,13 @@ public class TopDown3DPlayerController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
     [SerializeField]
-    private float maxTilt = 15f; 
- 
+    private float maxTilt = 15f;
+
+
+    public bool isHoldingObject = false;
+    public bool isRunning = false;
+    [SerializeField]
+    Animator playerAnimator;
 
     private void Awake()
     {
@@ -27,6 +32,15 @@ public class TopDown3DPlayerController : MonoBehaviour
     void Start()
     {
         
+    }
+
+    private void Update()
+    {
+        if (playerAnimator != null) {
+
+            playerAnimator.SetBool("isHoldingObject", isHoldingObject);
+            playerAnimator.SetBool("isRunning", isRunning);
+        }
     }
 
     // Update is called once per frame
@@ -46,15 +60,16 @@ public class TopDown3DPlayerController : MonoBehaviour
                 currentSpeed += acceleration * Time.deltaTime;
             }
 
-            
-             euler.y = angle;
+            euler.y = angle;
+            isRunning = true;
         } else {
-            currentSpeed = 0f; 
+            currentSpeed = 0f;
+            isRunning = false;
         }
 
         Vector3 velocity = (new Vector3(horizontal, 0, vertical)).normalized * Mathf.Min(topPlayerSpeed, currentSpeed);
         rb.velocity = velocity;
-        euler.x = -maxTilt * (currentSpeed / topPlayerSpeed);
+        // euler.x = -maxTilt * (currentSpeed / topPlayerSpeed);
         transform.localEulerAngles = euler;
     }
 }
