@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pool : MonoBehaviour
 {
+    public string id;
     public bool isParent = true;
     public bool growOnAwake = false;
     [SerializeField]

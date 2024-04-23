@@ -2,6 +2,7 @@ using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -13,7 +14,7 @@ public class Spawner : MonoBehaviour
     [SerializeField]
     private int maxActiveItems = 4;
     [SerializeField]
-    private Pool pool;
+    private Pool[] pools;
     [SerializeField]
     private float maxTimeBetweenItems = 4.5f;
     [SerializeField]
@@ -27,7 +28,6 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        pool = GetComponent<Pool>();
         active=  new List<GameObject>();
         setSpawnTime();
     }
@@ -46,8 +46,10 @@ public class Spawner : MonoBehaviour
         {
             spawnTimer += Time.deltaTime;
             if (spawnTimer >= spawnTime) {
-                GameObject instance = pool.GetItemInstance();
-                Transform spawn  = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length - 1)]; 
+                int poolIndex = UnityEngine.Random.Range(0, pools.Length);
+                Debug.Log(poolIndex);
+                GameObject instance = pools[poolIndex].GetItemInstance();
+                Transform spawn  = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Length)]; 
                 instance.transform.position = spawn.position;
                 
                 if (target != null) {
@@ -70,10 +72,16 @@ public class Spawner : MonoBehaviour
                 GameObject instance = active[i];
                 if (!instance.activeSelf)
                 {
-                    pool.AddToPool(instance);
-                    active.RemoveAt(i);
-                    i--;
-                    setSpawnTime();
+                    BasicEnemy be = instance.GetComponent<BasicEnemy>();
+                    Pool source = pools.First(p => p.id == be.id);
+                    if (source != null)
+                    {
+                        source.AddToPool(instance);
+                        active.RemoveAt(i);
+                        i--;
+                        setSpawnTime();
+
+                    }
                 }
             }
         }

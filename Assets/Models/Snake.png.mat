@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7386372231471503682
+--- !u!114 &-8314392783081884472
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,19 +20,19 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Miner.png
+  m_Name: Snake.png
   m_Shader: {fileID: 4800000, guid: bee44b4a58655ee4cbff107302a3e131, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - DR_CEL_EXTRA_ON
   - DR_RIM_ON
-  - _CELPRIMARYMODE_SINGLE
   - _DETAILMAPBLENDINGMODE_MULTIPLY
   - _GRADIENTSPACE_WORLD
   - _OUTLINESPACE_SCREEN
   - _TEXTUREBLENDINGMODE_MULTIPLY
   m_InvalidKeywords:
+  - _CELPRIMARYMODE_NONE
   - _UNITYSHADOWMODE_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -47,7 +47,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 7fa6df5356836df42adbe6ea3514f806, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8c77658c95b29e649803310e9a4d7ffc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -125,7 +125,7 @@ Material:
     - _CameraDistanceImpact: 0
     - _CelExtraEnabled: 1
     - _CelNumSteps: 3
-    - _CelPrimaryMode: 1
+    - _CelPrimaryMode: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -140,8 +140,8 @@ Material:
     - _FlatRimEdgeSmoothness: 0.5
     - _FlatRimLightAlign: 0
     - _FlatRimSize: 0.25
-    - _FlatSpecularEdgeSmoothness: 0.019
-    - _FlatSpecularSize: 0.244
+    - _FlatSpecularEdgeSmoothness: 1
+    - _FlatSpecularSize: 0.298
     - _Flatness: 1
     - _FlatnessExtra: 1
     - _GlossMapScale: 1
@@ -151,7 +151,7 @@ Material:
     - _GradientCenterX: 0
     - _GradientCenterY: 0
     - _GradientEnabled: 0
-    - _GradientSize: 177.5
+    - _GradientSize: 11.39
     - _GradientSpace: 0
     - _LightContribution: 0
     - _LightFalloffSize: 0
@@ -171,9 +171,9 @@ Material:
     - _ReceiveShadows: 1
     - _RimEnabled: 1
     - _SelfShadingSize: 0.5
-    - _SelfShadingSizeExtra: 0.5
+    - _SelfShadingSizeExtra: 0.75
     - _ShadowEdgeSize: 0.05
-    - _ShadowEdgeSizeExtra: 0.05
+    - _ShadowEdgeSizeExtra: 0
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 0
@@ -197,7 +197,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDim: {r: 1, g: 1, b: 1, a: 1}
     - _ColorDimCurve: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
-    - _ColorDimExtra: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ColorDimExtra: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
     - _ColorDimSteps: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
     - _ColorGradient: {r: 0, g: 1, b: 0.19978666, a: 1}
     - _DetailMapColor: {r: 1, g: 1, b: 1, a: 1}
@@ -205,7 +205,7 @@ Material:
     - _FlatRimColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlatSpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.9472873, g: 1, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.8504499, a: 0.85056}
   m_BuildTextureStacks: []

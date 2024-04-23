@@ -65,47 +65,63 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Body
+      - path: Orange
         weight: 0
-      - path: Body/LeftFeet
+      - path: Orange/Body
         weight: 0
-      - path: Body/LeftFeet/LeftFeet_1
+      - path: Orange/Body/LeftFeet
         weight: 0
-      - path: Body/RIghtFeet
+      - path: Orange/Body/LeftFeet/LeftFeet_1
         weight: 0
-      - path: Body/RIghtFeet/RightFeet
+      - path: Orange/Body/RIghtFeet
         weight: 0
-      - path: Body/Torso
+      - path: Orange/Body/RIghtFeet/RightFeet
         weight: 0
-      - path: Body/Torso/Base_1
+      - path: Orange/Body/Torso
         weight: 0
-      - path: Body/Torso/LeftArm
+      - path: Orange/Body/Torso/Base_1
+        weight: 0
+      - path: Orange/Body/Torso/LeftArm
         weight: 1
-      - path: Body/Torso/LeftArm/Forearm
+      - path: Orange/Body/Torso/LeftArm/Forearm
         weight: 0
-      - path: Body/Torso/LeftArm/Hand
+      - path: Orange/Body/Torso/LeftArm/Hand
         weight: 0
-      - path: Body/Torso/LeftArm/Shoulder
+      - path: Orange/Body/Torso/LeftArm/Shoulder
         weight: 0
-      - path: Body/Torso/RightArm
+      - path: Orange/Body/Torso/RightArm
         weight: 1
-      - path: Body/Torso/RightArm/Forearm_1
+      - path: Orange/Body/Torso/RightArm/Forearm_1
         weight: 0
-      - path: Body/Torso/RightArm/Hand_1
+      - path: Orange/Body/Torso/RightArm/Hand_1
         weight: 0
-      - path: Body/Torso/RightArm/Shoulder_1
+      - path: Orange/Body/Torso/RightArm/Shoulder_1
         weight: 0
-      - path: Head
+      - path: Orange/Head
         weight: 0
-      - path: Head/Base
+      - path: Orange/Head/Base
         weight: 0
-      - path: Head/Ear
+      - path: Orange/Head/Ear
         weight: 0
-      - path: Head/Ear_1
+      - path: Orange/Head/Ear_1
         weight: 0
-      - path: Head/Lamp
+      - path: Orange/Head/Lamp
         weight: 0
-      - path: Head/Mask
+      - path: Orange/Head/Mask
+        weight: 0
+      - path: Stars
+        weight: 0
+      - path: Stars/Star
+        weight: 0
+      - path: Stars/Star/Star_1
+        weight: 0
+      - path: Stars/Star2
+        weight: 0
+      - path: Stars/Star2/Star_3
+        weight: 0
+      - path: Stars/Star3
+        weight: 0
+      - path: Stars/Star3/Star_2
         weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
@@ -196,48 +212,242 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Body
+      - path: Orange
         weight: 0
-      - path: Body/LeftFeet
+      - path: Orange/Body
         weight: 0
-      - path: Body/LeftFeet/LeftFeet_1
+      - path: Orange/Body/LeftFeet
         weight: 0
-      - path: Body/RIghtFeet
+      - path: Orange/Body/LeftFeet/LeftFeet_1
         weight: 0
-      - path: Body/RIghtFeet/RightFeet
+      - path: Orange/Body/RIghtFeet
         weight: 0
-      - path: Body/Torso
+      - path: Orange/Body/RIghtFeet/RightFeet
         weight: 0
-      - path: Body/Torso/Base_1
+      - path: Orange/Body/Torso
         weight: 0
-      - path: Body/Torso/LeftArm
+      - path: Orange/Body/Torso/Base_1
+        weight: 0
+      - path: Orange/Body/Torso/LeftArm
         weight: 1
-      - path: Body/Torso/LeftArm/Forearm
+      - path: Orange/Body/Torso/LeftArm/Forearm
         weight: 0
-      - path: Body/Torso/LeftArm/Hand
+      - path: Orange/Body/Torso/LeftArm/Hand
         weight: 0
-      - path: Body/Torso/LeftArm/Shoulder
+      - path: Orange/Body/Torso/LeftArm/Shoulder
         weight: 0
-      - path: Body/Torso/RightArm
+      - path: Orange/Body/Torso/RightArm
         weight: 1
-      - path: Body/Torso/RightArm/Forearm_1
+      - path: Orange/Body/Torso/RightArm/Forearm_1
         weight: 0
-      - path: Body/Torso/RightArm/Hand_1
+      - path: Orange/Body/Torso/RightArm/Hand_1
         weight: 0
-      - path: Body/Torso/RightArm/Shoulder_1
+      - path: Orange/Body/Torso/RightArm/Shoulder_1
         weight: 0
-      - path: Head
+      - path: Orange/Head
         weight: 0
-      - path: Head/Base
+      - path: Orange/Head/Base
         weight: 0
-      - path: Head/Ear
+      - path: Orange/Head/Ear
         weight: 0
-      - path: Head/Ear_1
+      - path: Orange/Head/Ear_1
         weight: 0
-      - path: Head/Lamp
+      - path: Orange/Head/Lamp
         weight: 0
-      - path: Head/Mask
+      - path: Orange/Head/Mask
         weight: 0
+      - path: Stars
+        weight: 0
+      - path: Stars/Star
+        weight: 0
+      - path: Stars/Star/Star_1
+        weight: 0
+      - path: Stars/Star2
+        weight: 0
+      - path: Stars/Star2/Star_3
+        weight: 0
+      - path: Stars/Star3
+        weight: 0
+      - path: Stars/Star3/Star_2
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Win
+      takeName: Win
+      internalID: 1772756325105271943
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Orange
+        weight: 1
+      - path: Orange/Body
+        weight: 1
+      - path: Orange/Body/LeftFeet
+        weight: 1
+      - path: Orange/Body/LeftFeet/LeftFeet_1
+        weight: 1
+      - path: Orange/Body/RIghtFeet
+        weight: 1
+      - path: Orange/Body/RIghtFeet/RightFeet
+        weight: 1
+      - path: Orange/Body/Torso
+        weight: 1
+      - path: Orange/Body/Torso/Base_1
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Forearm
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Hand
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Shoulder
+        weight: 1
+      - path: Orange/Body/Torso/RightArm
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Forearm_1
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Hand_1
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Shoulder_1
+        weight: 1
+      - path: Orange/Head
+        weight: 1
+      - path: Orange/Head/Base
+        weight: 1
+      - path: Orange/Head/Ear
+        weight: 1
+      - path: Orange/Head/Ear_1
+        weight: 1
+      - path: Orange/Head/Lamp
+        weight: 1
+      - path: Orange/Head/Mask
+        weight: 1
+      - path: Stars
+        weight: 1
+      - path: Stars/Star
+        weight: 1
+      - path: Stars/Star/Star_1
+        weight: 1
+      - path: Stars/Star2
+        weight: 1
+      - path: Stars/Star2/Star_3
+        weight: 1
+      - path: Stars/Star3
+        weight: 1
+      - path: Stars/Star3/Star_2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lose Loop
+      takeName: Lose Loop
+      internalID: 7619930721580026173
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Orange
+        weight: 1
+      - path: Orange/Body
+        weight: 1
+      - path: Orange/Body/LeftFeet
+        weight: 1
+      - path: Orange/Body/LeftFeet/LeftFeet_1
+        weight: 1
+      - path: Orange/Body/RIghtFeet
+        weight: 1
+      - path: Orange/Body/RIghtFeet/RightFeet
+        weight: 1
+      - path: Orange/Body/Torso
+        weight: 1
+      - path: Orange/Body/Torso/Base_1
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Forearm
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Hand
+        weight: 1
+      - path: Orange/Body/Torso/LeftArm/Shoulder
+        weight: 1
+      - path: Orange/Body/Torso/RightArm
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Forearm_1
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Hand_1
+        weight: 1
+      - path: Orange/Body/Torso/RightArm/Shoulder_1
+        weight: 1
+      - path: Orange/Head
+        weight: 1
+      - path: Orange/Head/Base
+        weight: 1
+      - path: Orange/Head/Ear
+        weight: 1
+      - path: Orange/Head/Ear_1
+        weight: 1
+      - path: Orange/Head/Lamp
+        weight: 1
+      - path: Orange/Head/Mask
+        weight: 1
+      - path: Stars
+        weight: 1
+      - path: Stars/Star
+        weight: 1
+      - path: Stars/Star/Star_1
+        weight: 1
+      - path: Stars/Star2
+        weight: 1
+      - path: Stars/Star2/Star_3
+        weight: 1
+      - path: Stars/Star3
+        weight: 1
+      - path: Stars/Star3/Star_2
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

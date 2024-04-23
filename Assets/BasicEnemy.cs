@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour
 {
+    public string id;
+    public float furnaceDamage = 5;
     public bool forceDie = false;
     [SerializeField]
     private float totalHealth = 100;

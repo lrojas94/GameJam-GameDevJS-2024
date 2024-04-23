@@ -14,8 +14,6 @@ public class TopDown3DPlayerController : MonoBehaviour
 
     [SerializeField]
     private Rigidbody rb;
-    [SerializeField]
-    private float maxTilt = 15f;
 
 
     public bool isHoldingObject = false;
@@ -28,10 +26,12 @@ public class TopDown3DPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnDisable()
     {
-        
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+        }
     }
 
     private void Update()
@@ -69,7 +69,6 @@ public class TopDown3DPlayerController : MonoBehaviour
 
         Vector3 velocity = (new Vector3(horizontal, 0, vertical)).normalized * Mathf.Min(topPlayerSpeed, currentSpeed);
         rb.velocity = velocity;
-        // euler.x = -maxTilt * (currentSpeed / topPlayerSpeed);
         transform.localEulerAngles = euler;
     }
 }

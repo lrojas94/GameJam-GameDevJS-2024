@@ -18,9 +18,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
     [SerializeField]
     private float bucketStrength = 0.5f;
     [SerializeField]
-    private float coalStrength = 1f;
-    [SerializeField]
-    private float enemyStrength = 2.5f;
+    private float coalStrength = 1f; 
 
 
     [SerializeField]
@@ -105,7 +103,10 @@ public class Furnace : MonoBehaviour, IPickupPoint
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            IncreaseFireStrength(enemyStrength); 
+            BasicEnemy be = collision.gameObject.GetComponent<BasicEnemy>();
+            if (be != null) {
+                IncreaseFireStrength(be.furnaceDamage); 
+            }
         }
     }
 }
