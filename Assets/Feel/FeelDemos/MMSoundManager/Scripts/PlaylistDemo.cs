@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using MoreMountains.Tools;
-using TMPro;
 using UnityEngine;
+#if MM_TEXTMESHPRO
+using TMPro;
+#endif
 
 namespace MoreMountains.Feel
 {
@@ -15,10 +15,12 @@ namespace MoreMountains.Feel
 		public MMSMPlaylistManager PlaylistManager;
 		/// a progress bar meant to display the progress of the song currently playing 
 		public MMProgressBar ProgressBar;
+		#if MM_TEXTMESHPRO
 		/// the name of the song currently playing
 		public TMP_Text SongName;
 		/// a text displaying the current progress of the song in minutes/seconds 
 		public TMP_Text SongDuration;
+		#endif
 
 		/// <summary>
 		/// On Update, updates the progress bar and song duration counter
@@ -32,9 +34,11 @@ namespace MoreMountains.Feel
 			else
 			{
 				ProgressBar.SetBar(PlaylistManager.CurrentTime, 0f, PlaylistManager.CurrentClipDuration);
+				#if MM_TEXTMESHPRO
 				SongDuration.text = MMTime.FloatToTimeString(PlaylistManager.CurrentTime, false, true, true, false)
 				                    + " / "
 				                    + MMTime.FloatToTimeString(PlaylistManager.CurrentClipDuration, false, true, true, false);
+				#endif
 			}
 		}
 
@@ -44,7 +48,9 @@ namespace MoreMountains.Feel
 		protected virtual void UpdateSongName()
 		{
 			int displayIndex = PlaylistManager.CurrentSongIndex + 1;
+			#if MM_TEXTMESHPRO
 			SongName.text = displayIndex + ". " + PlaylistManager.CurrentSongName;
+			#endif
 		}
 		
 		/// <summary>

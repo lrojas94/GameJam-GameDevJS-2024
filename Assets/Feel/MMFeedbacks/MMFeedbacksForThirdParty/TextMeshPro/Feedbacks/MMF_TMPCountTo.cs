@@ -5,6 +5,7 @@ using UnityEngine;
 #if MM_TEXTMESHPRO
 using TMPro;
 #endif
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -16,6 +17,7 @@ namespace MoreMountains.Feedbacks
 	#if MM_TEXTMESHPRO
 	[FeedbackPath("TextMesh Pro/TMP Count To")]
 	#endif
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.TextMeshPro")]
 	public class MMF_TMPCountTo : MMF_Feedback
 	{
 		/// a static bool used to disable all feedbacks of this type at once

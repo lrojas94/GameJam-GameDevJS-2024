@@ -4,6 +4,7 @@ using System.Collections;
 #if MM_TEXTMESHPRO
 using TMPro;
 #endif
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -15,6 +16,7 @@ namespace MoreMountains.Feedbacks
 	#if MM_TEXTMESHPRO
 	[FeedbackPath("TextMesh Pro/TMP Dilate")]
 	#endif
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.TextMeshPro")]
 	public class MMF_TMPDilate : MMF_Feedback
 	{
 		/// a static bool used to disable all feedbacks of this type at once
@@ -172,6 +174,26 @@ namespace MoreMountains.Feedbacks
 			TargetTMPText.fontMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, newValue);
 			TargetTMPText.UpdateMeshPadding();
 			#endif
+		}
+
+		/// <summary>
+		/// Stops the animation if needed
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="feedbacksIntensity"></param>
+		protected override void CustomStopFeedback(Vector3 position, float feedbacksIntensity = 1)
+		{
+			if (!Active || !FeedbackTypeAuthorized)
+			{
+				return;
+			}
+			base.CustomStopFeedback(position, feedbacksIntensity);
+			IsPlaying = false;
+			if (_coroutine != null)
+			{
+				Owner.StopCoroutine(_coroutine);
+				_coroutine = null;
+			}
 		}
 		
 		/// <summary>

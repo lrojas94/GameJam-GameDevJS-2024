@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Audio;
 using MoreMountains.Tools;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
+using UnityEngine.Scripting.APIUpdating;
 using Random = UnityEngine.Random;
 
 namespace MoreMountains.Feedbacks
@@ -15,6 +12,7 @@ namespace MoreMountains.Feedbacks
 	[ExecuteAlways]
 	[AddComponentMenu("")]
 	[FeedbackPath("Audio/Sound")]
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.MMTools")]
 	[FeedbackHelp("This feedback lets you play the specified AudioClip, either via event (you'll need something in your scene to catch a MMSfxEvent, for example a MMSoundManager), or cached (AudioSource gets created on init, and is then ready to be played), or on demand (instantiated on Play). For all these methods you can define a random volume between min/max boundaries (just set the same value in both fields if you don't want randomness), random pitch, and an optional AudioMixerGroup.")]
 	public class MMF_Sound : MMF_Feedback
 	{
@@ -23,7 +21,8 @@ namespace MoreMountains.Feedbacks
 		/// sets the inspector color for this feedback
 		#if UNITY_EDITOR
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.SoundsColor; } }
-		public override bool HasCustomInspectors { get { return true; } }
+		public override bool HasCustomInspectors => true;
+		public override bool HasAutomaticShakerSetup => true;
 		public override bool EvaluateRequiresSetup()
 		{
 			bool requiresSetup = false;
@@ -188,6 +187,7 @@ namespace MoreMountains.Feedbacks
 
 		public override void InitializeCustomAttributes()
 		{
+			base.InitializeCustomAttributes();
 			TestPlayButton = new MMF_Button("Debug Play Sound", TestPlaySound);
 			TestStopButton = new MMF_Button("Debug Stop Sound", TestStopSound);
 		}
@@ -348,7 +348,7 @@ namespace MoreMountains.Feedbacks
 					AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource;
 					PlayAudioSource(audioSource, sfx, volume, pitch, timeSamples, SfxAudioMixerGroup, Priority);
 					// we destroy the host after the clip has played
-					Owner.ProxyDestroy(temporaryAudioHost, sfx.length);
+					Owner.ProxyDestroy(temporaryAudioHost, sfx.length * Time.timeScale);
 					break;
 				case PlayMethods.Pool:
 					_tempAudioSource = GetAudioSourceFromPool();
@@ -477,6 +477,24 @@ namespace MoreMountains.Feedbacks
 			{
 				_editorAudioSource.Stop();
 			}            
+		}
+		
+		/// <summary>
+		/// Automatically tries to add a MMSoundManager to the scene if none are present
+		/// </summary>
+		public override void AutomaticShakerSetup()
+		{
+			if (PlayMethod != PlayMethods.Event)
+			{
+				return;
+			}
+			MMSoundManager soundManager = (MMSoundManager)UnityEngine.Object.FindObjectOfType(typeof(MMSoundManager));
+			if (soundManager == null)
+			{
+				GameObject soundManagerGo = new GameObject("MMSoundManager");
+				soundManagerGo.AddComponent<MMSoundManager>();
+				MMDebug.DebugLogInfo( "Added a MMSoundManager to the scene. You're all set.");
+			}
 		}
 	}
 }

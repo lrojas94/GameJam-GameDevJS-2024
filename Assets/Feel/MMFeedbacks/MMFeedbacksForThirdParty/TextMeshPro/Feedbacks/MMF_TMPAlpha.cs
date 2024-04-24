@@ -4,6 +4,7 @@ using System.Collections;
 #if MM_TEXTMESHPRO
 using TMPro;
 #endif
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -15,6 +16,7 @@ namespace MoreMountains.Feedbacks
 	#if MM_TEXTMESHPRO
 	[FeedbackPath("TextMesh Pro/TMP Alpha")]
 	#endif
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.TextMeshPro")]
 	public class MMF_TMPAlpha : MMF_Feedback
 	{
 		/// sets the inspector color for this feedback

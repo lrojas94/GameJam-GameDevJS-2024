@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -10,6 +11,7 @@ namespace MoreMountains.Feedbacks
 	/// </summary>
 	[AddComponentMenu("")]
 	[FeedbackHelp("This feedback will let you change the color of a target Graphic over time.")]
+	[MovedFrom(false, null, "MoreMountains.Feedbacks")]
 	[FeedbackPath("UI/Graphic")]
 	public class MMF_Graphic : MMF_Feedback
 	{
@@ -141,7 +143,10 @@ namespace MoreMountains.Feedbacks
 				Turn(false);
 			}
 			IsPlaying = false;
-			Owner.StopCoroutine(_coroutine);
+			if (_coroutine != null)
+			{
+				Owner.StopCoroutine(_coroutine);	
+			}
 			_coroutine = null;
 			yield return null;
 		}
@@ -175,7 +180,12 @@ namespace MoreMountains.Feedbacks
 			{
 				Turn(false);    
 			}
-			Owner.StopCoroutine(_coroutine);
+
+			if (_coroutine != null)
+			{
+				Owner.StopCoroutine(_coroutine);
+			}
+
 			_coroutine = null;
 		}
 

@@ -42,7 +42,7 @@ namespace MoreMountains.Feedbacks
 			bool tmpFound = false;
 			bool postProcessingFound = false;
             
-			#if MM_CINEMACHINE
+			#if MM_CINEMACHINE || MM_CINEMACHINE3
 			cinemachineFound = true;
 			#endif
                         

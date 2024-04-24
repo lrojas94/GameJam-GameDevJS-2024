@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using MoreMountains.Tools;
+using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.UI;
 
 namespace MoreMountains.Feedbacks
 {
@@ -10,6 +10,7 @@ namespace MoreMountains.Feedbacks
 	/// </summary>
 	[AddComponentMenu("")]
 	[FeedbackHelp("This feedback lets you trigger a fade event.")]
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.MMTools")]
 	[FeedbackPath("Camera/Fade")]
 	public class MMF_Fade : MMF_Feedback
 	{
@@ -19,6 +20,8 @@ namespace MoreMountains.Feedbacks
 		#if UNITY_EDITOR
 		public override Color FeedbackColor { get { return MMFeedbacksInspectorColors.CameraColor; } }
 		public override string RequiredTargetText { get { return "ID "+ID;  } }
+		public override bool HasCustomInspectors => true;
+		public override bool HasAutomaticShakerSetup => true;
 		#endif
 		/// the different possible types of fades
 		public enum FadeTypes { FadeIn, FadeOut, Custom }
@@ -159,6 +162,35 @@ namespace MoreMountains.Feedbacks
 				return;
 			}
 			MMFadeStopEvent.Trigger(ID, true);
+		}
+		
+		/// <summary>
+		/// Automatically tries to add a MMFader setup to the scene
+		/// </summary>
+		public override void AutomaticShakerSetup()
+		{
+			if (GameObject.FindObjectOfType<MMFader>() != null)
+			{
+				return;
+			}
+			
+			(Canvas canvas, bool createdNewCanvas) = Owner.gameObject.MMFindOrCreateObjectOfType<Canvas>("FadeCanvas", null);
+			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+			(Image image, bool createdNewImage) = canvas.gameObject.MMFindOrCreateObjectOfType<Image>("FadeImage", canvas.transform, true);
+			image.raycastTarget = false;
+			image.color = Color.black;
+			
+			RectTransform rectTransform = image.GetComponent<RectTransform>();
+			rectTransform.anchorMin = new Vector2(0f, 0f);
+			rectTransform.anchorMax = new Vector2(1f, 1f);
+			rectTransform.offsetMin = Vector2.zero;
+			rectTransform.offsetMax = Vector2.zero;
+			
+			image.gameObject.AddComponent<MMFader>();
+			image.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+			image.gameObject.GetComponent<CanvasGroup>().interactable = false;
+
+			MMDebug.DebugLogInfo("Added a MMFader to the scene. You're all set.");
 		}
 	}
 }

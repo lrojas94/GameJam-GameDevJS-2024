@@ -426,6 +426,15 @@ namespace MoreMountains.Feedbacks
 				EditorGUILayout.Space(10);
 				EditorGUILayout.LabelField(_eventsText, EditorStyles.boldLabel);
 				EditorGUILayout.PropertyField(_mmfeedbacksEvents);
+			
+				if (!Application.isPlaying && TargetMmfPlayer.HasAutomaticShakerSetup)
+				{
+					EditorGUILayout.Space(10);
+					if (GUILayout.Button("Automatic Shaker Setup"))
+					{
+						TargetMmfPlayer.AutomaticShakerSetup();
+					}
+				}
 			}
 		}
         

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 #if MM_TEXTMESHPRO
 using MoreMountains.Tools;
 using TMPro;
 #endif
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -17,6 +20,7 @@ namespace MoreMountains.Feedbacks
 	#if MM_TEXTMESHPRO
 	[FeedbackPath("TextMesh Pro/TMP Text Reveal")]
 	#endif
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.TextMeshPro")]
 	public class MMF_TMPTextReveal : MMF_Feedback
 	{
 		/// a static bool used to disable all feedbacks of this type at once
@@ -49,7 +53,28 @@ namespace MoreMountains.Feedbacks
 				}
 				else
 				{
-					if ((TargetTMPText == null) || (TargetTMPText.textInfo == null))
+					if (TargetTMPText == null)
+					{
+						return 0f;
+					}
+					
+					if (TargetTMPText.textInfo == null)
+					{
+						bool initiallyActive = TargetTMPText.gameObject.activeSelf;
+						TargetTMPText.gameObject.SetActive(true);
+						TargetTMPText.ForceMeshUpdate(true);
+						TargetTMPText.gameObject.SetActive(initiallyActive);
+					}
+
+					if (AllowHierarchyActivationForDurationComputation)
+					{
+						List<Transform> disabledParents = TargetTMPText.transform.MMEnumerateAllParents(true).Where(p => !p.gameObject.activeSelf).ToList();
+						disabledParents.ForEach(p => p.gameObject.SetActive(true));
+						TargetTMPText.ForceMeshUpdate(true);
+						disabledParents.ForEach(p => p.gameObject.SetActive(false));
+					}
+
+					if (TargetTMPText.textInfo == null)
 					{
 						return 0f;
 					}
@@ -118,6 +143,7 @@ namespace MoreMountains.Feedbacks
 				}
 			}
 		}
+		
 		#endif
 
 		/// the possible ways to reveal the text
@@ -160,6 +186,9 @@ namespace MoreMountains.Feedbacks
 		/// a UnityEvent to invoke every time a reveal happens (word, line or character)
 		[Tooltip("a UnityEvent to invoke every time a reveal happens (word, line or character)")]
 		public UnityEvent OnReveal;
+		/// alright so that one will be weird : for reasons, TextMeshPro won't let you read the length of a disabled text, so to do so, we need to enable it, even if it's just to disable it again right after. If you're targeting a disabled text, or a text that is part of a disabled hierarchy, you'll probably want to set this to true so that the system can proceed with accurate duration computation. If you don't, and your target transform is disabled, duration won't be computed correctly.
+		[Tooltip("alright so that one will be weird : for reasons, TextMeshPro won't let you read the length of a disabled text, so to do so, we need to enable it, even if it's just to disable it again right after. If you're targeting a disabled text, or a text that is part of a disabled hierarchy, you'll probably want to set this to true so that the system can proceed with accurate duration computation. If you don't, and your target transform is disabled, duration won't be computed correctly.")]
+		public bool AllowHierarchyActivationForDurationComputation = false;
 
 		protected float _delay;
 		protected Coroutine _coroutine;

@@ -3,6 +3,7 @@ using UnityEngine;
 #if MM_TEXTMESHPRO
 using TMPro;
 #endif
+using UnityEngine.Scripting.APIUpdating;
 
 namespace MoreMountains.Feedbacks
 {
@@ -14,6 +15,7 @@ namespace MoreMountains.Feedbacks
 	#if MM_TEXTMESHPRO
 	[FeedbackPath("TextMesh Pro/TMP Word Spacing")]
 	#endif
+	[MovedFrom(false, null, "MoreMountains.Feedbacks.TextMeshPro")]
 	public class MMF_TMPWordSpacing : MMF_FeedbackBase
 	{
 		/// sets the inspector color for this feedback
