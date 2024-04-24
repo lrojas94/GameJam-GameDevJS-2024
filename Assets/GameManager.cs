@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI bonusCashText;
 
+
     [SerializeField]
     private MMF_Player gameStartFeedback = null;
     [SerializeField]
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
     private MMF_Player gameWinFeedback = null;
     [SerializeField]
     private MMF_Player moneyChangeFeedback = null;
+    [SerializeField]
+    private MMF_Player timeoutFeedback = null;
 
 
     private void Awake()
@@ -95,6 +98,10 @@ public class GameManager : MonoBehaviour
             int seconds = ((int)(Mathf.Ceil(timer % 60)));
             int minutes = ((int)timer / 60); 
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            if (minutes == 0 && seconds < 3)
+            {
+                timeoutFeedback.PlayFeedbacks();
+            }
 
             if (seconds <= 0)
             {

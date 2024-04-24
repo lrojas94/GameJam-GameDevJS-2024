@@ -1,4 +1,5 @@
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,17 @@ public class BasicEnemy : MonoBehaviour
 
     [SerializeField]
     MMF_Player deathFeedback;
+    [SerializeField]
+    MMHealthBar healthBar;
     private void OnEnable()
     {
         health = totalHealth;
         forceDie = false;
+        if (healthBar != null)
+        {
+            healthBar.UpdateBar(health, 0, totalHealth, true);
+            Debug.Log("show bar");
+        }
     }
 
     private void Update()
@@ -36,6 +44,10 @@ public class BasicEnemy : MonoBehaviour
     public void TakeDamage(float damage, Vector3 contactPoint)
     {
         health -= damage;
+        if (healthBar != null)
+        {
+            healthBar.UpdateBar(health, 0, totalHealth, true);
+        }
         if (health < 0)
         {
             OnDeath();

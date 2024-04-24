@@ -11,6 +11,12 @@ public class Furnace : MonoBehaviour, IPickupPoint
     public float idealPower = 15f;
    
     private float targetPower = 15f;
+    [SerializeField]
+    private int coalBonus = 15;
+    [SerializeField]
+    private int waterBonus = 25;
+    [SerializeField]
+    private int enemyPenalty = 20;
 
     [SerializeField]
     private float extinguishSpeed = 1f;
@@ -32,14 +38,6 @@ public class Furnace : MonoBehaviour, IPickupPoint
 
     [SerializeField]
     Image tempertureIndicator;
-
-    void Awake()
-    {
-        if (fireEfx != null)
-        {
-
-        }
-    }
 
     // Update is called once per frame
     void Update()
@@ -77,6 +75,7 @@ public class Furnace : MonoBehaviour, IPickupPoint
                 {
                     bucket.Empty();
                     IncreaseFireStrength(-bucketStrength);
+                    GameManager.Instance.AddBonusCash(waterBonus);
                 }
             }
 
@@ -99,13 +98,15 @@ public class Furnace : MonoBehaviour, IPickupPoint
         if (collision.gameObject.CompareTag("Coal"))
         {
             IncreaseFireStrength(coalStrength);
+            GameManager.Instance.AddBonusCash(coalBonus);
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             BasicEnemy be = collision.gameObject.GetComponent<BasicEnemy>();
             if (be != null) {
-                IncreaseFireStrength(be.furnaceDamage); 
+                IncreaseFireStrength(be.furnaceDamage);
+                GameManager.Instance.AddBonusCash(-enemyPenalty);
             }
         }
     }
