@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -60,7 +61,22 @@ public class GameManager : MonoBehaviour
     private MMF_Player moneyChangeFeedback = null;
     [SerializeField]
     private MMF_Player timeoutFeedback = null;
+    [SerializeField]
+    private MMF_Player gameLoseFeedback = null;
 
+    // Win:
+    [SerializeField]
+    private TextMeshProUGUI winBonusText;
+    private int winBonusCashCounter;
+    private float winBonusCashCounterTimerTotal = 1.2f;
+    private float winBonusCashCounterTimerCurrent = 0f;
+    [SerializeField]
+    public bool startWinBonusCashCounter = false;
+
+
+    // Lose:
+    [SerializeField]
+    private TextMeshProUGUI justificationText;
 
     private void Awake()
     {
@@ -105,9 +121,18 @@ public class GameManager : MonoBehaviour
 
             if (seconds <= 0)
             {
-                state = GameState.Win; 
-                gameWinFeedback.PlayFeedbacks();
-                return;
+                if (bonusCash > 0)
+                {
+                    state = GameState.Win; 
+                    gameWinFeedback.PlayFeedbacks();
+                    return;
+                } else
+                {
+                    state = GameState.Lose;
+                    gameLoseFeedback.PlayFeedbacks();
+                    justificationText.text = $"You have cost the company {Mathf.Abs(bonusCash).ToString("#,##0")} bucks.";
+                    return;
+                }
             }
 
             // Update the graphics:
@@ -125,9 +150,26 @@ public class GameManager : MonoBehaviour
             {
                 // Trigger game lost:
                 state = GameState.Lose;
+                gameLoseFeedback.PlayFeedbacks();
+                justificationText.text = fillAmount <= 0
+                    ? "You have let  the generator run too cold and it is now ruined"
+                    : "You have let the generator run too hot and it has been ruined";
+            }
+        }
+
+        if (state == GameState.Win)
+        {
+            if (startWinBonusCashCounter && winBonusCashCounter != bonusCash)
+            {
+                winBonusCashCounterTimerCurrent += Time.deltaTime;
+                winBonusCashCounter = (int)Mathf.Lerp(0, bonusCash, winBonusCashCounterTimerCurrent / winBonusCashCounterTimerTotal);
             }
 
+            winBonusText.text = winBonusCashCounter.ToString("#,##0");
         }
+
+
+
     }
 
     void onCompleteIntro()
